@@ -54,34 +54,29 @@
 	  </nav>
 
 	  
-	  <section id="home-section" class="hero" style="width: 100%; margin: 0; padding: 0;">
-		<div class="home-slider owl-carousel" style="width: 100%; overflow: hidden;">
-		  <div class="slider-item" style="position: relative; height: 100vh; width: 100%;">
-			<div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-			<div class="container" style="position: relative; z-index: 2; padding: 20px;">
-			  <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" style="display: flex; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: flex-end;" data-scrollax-parent="true">
-				<div class="one-third js-fullheight order-md-last img" style="flex: 1 1 33%; min-width: 300px; height: 100%; background-image: url(my_img.jpeg); background-size: cover; background-position: center; position: relative;">
-				  <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
-				</div>
-				<div class="one-forth d-flex align-items-center ftco-animate" style="flex: 1 1 60%; min-width: 250px; padding: 20px; box-sizing: border-box;" data-scrollax=" properties: { translateY: '70%' }">
-				  <div class="text" style="width: 100%;">
-					<h1 style="font-style: italic; color: #888; font-size: 16px; margin: 10px 0; @media (max-width: 768px) { font-size: 12px; }">
-					  📌 This site is under active development. Last updated: May 2024.
-					</h1>
-					<h1 style="margin: 10px 0; font-size: 36px; @media (max-width: 768px) { font-size: 24px; }">Hi, I'm <span style="color: #007bff;">Samad Khalid 👋</span></h1>
-					<!-- <h2 style="margin: 10px 0; font-size: 24px; @media (max-width: 768px) { font-size: 18px; }">React Native Developer • 3+ Years of Experience</h2>
-					<h2 style="margin: 10px 0; font-size: 20px; @media (max-width: 768px) { font-size: 14px; }">I build high-quality mobile apps for iOS and Android with a focus on performance, scalability, and beautiful UI/UX.</h2> -->
-					<p style="margin: 10px 0;">
-					  <a href="SamadkResume.pdf" class="btn btn-primary py-3 px-4" style="display: inline-block; text-decoration: none; background: #007bff; color: white; padding: 10px 20px; border-radius: 5px; @media (max-width: 768px) { padding: 8px 15px; font-size: 12px; }">📄 Download Resume</a>
-					  <a href="https://www.linkedin.com/in/abdul-samad71/" class="btn btn-white btn-outline-white py-3 px-4" style="display: inline-block; text-decoration: none; color: #007bff; border: 1px solid #007bff; padding: 10px 20px; border-radius: 5px; margin-left: 10px; @media (max-width: 768px) { padding: 8px 15px; font-size: 12px; }">💼 LinkedIn</a>
-					</p>
-				  </div>
-				</div>
-			  </div>
+	  <section id="home-section" class="hero" style="background-color: #111; color: #fff; padding: 80px 0;">
+		<div class="container">
+		  <div class="row align-items-center">
+			<!-- Left: Text Content -->
+			<div class="col-md-6 ftco-animate">
+			  <!-- <h1 style="font-style: italic; color: #aaa; font-size: 16px;">📌 This site is under active development. Last updated: May 2024.</h1> -->
+			  <h1 style="margin-top: 10px; font-size: 36px;">Hi, I'm <span style="color: #00bcd4;">Samad Khalid 👋</span></h1>
+			  <h2 style="font-size: 24px;">React Native Developer • 3+ Years of Experience</h2>
+			  <h2 style="font-size: 20px;">I build high-quality mobile apps for iOS and Android with a focus on performance, scalability, and beautiful UI/UX.</h2>
+			  <p class="mt-4">
+				<a href="SamadkResume.pdf" class="btn btn-primary py-3 px-4">📄 Download Resume</a>
+				<a href="https://www.linkedin.com/in/abdul-samad71/" class="btn btn-outline-light py-3 px-4" style="margin-left: 10px;">💼 LinkedIn</a>
+			  </p>
+			</div>
+	  
+			<!-- Right: Image -->
+			<div class="col-md-6 ftco-animate text-center">
+			  <img src="images/bg.png" alt="Samad Khalid" class="img-fluid rounded shadow" style="max-width: 100%; height: auto; border-radius: 12px;">
 			</div>
 		  </div>
 		</div>
 	  </section>
+	  
 
     <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
     	<div class="container">
@@ -174,7 +169,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Services</h1>
             <h2 class="mb-4">Services</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>End-to-end mobile app development — from sleek UI to powerful backend, built with React Native for Android & iOS.</p>
           </div>
         </div>
     		<div class="row">
@@ -249,40 +244,76 @@
     	</div>
     </section>
 
-		
 	<section class="ftco-section" id="skills-section" style="background-color: #111; color: #fff; padding: 80px 0;">
 		<div class="container">
 		  <div class="row justify-content-center pb-5">
-			<div class="col-md-12 heading-section text-center">
-			  <h1 class="big big-2" style="opacity: 0.05; font-size: 5rem;">Skills</h1>
-			  <h2 class="mb-4" style="font-weight: bold;">My Skills</h2>
-			  <p style="color: #aaa;">Technologies and tools I use to build high-quality mobile apps</p>
+			<div class="col-md-10 heading-section text-center ftco-animate">
+			  <h1 class="big big-2">Skills</h1>
+			  <h2 class="mb-4">My Skills</h2>
+			  <p>Technologies and tools I use to build high-quality mobile apps</p>
 			</div>
 		  </div>
 	  
 		  <div class="row justify-content-center">
-			<!-- Skill tags -->
 			<div class="col-md-10">
-			  <div class="d-flex flex-wrap justify-content-center gap-2" style="gap: 15px;">
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">React Native</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Redux</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Zustand</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Firebase</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Node.js</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">React.js</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">REST API</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Git</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">GitHub</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Jest</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Detox</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Styled Components</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Expo</span>
-				<span style="background-color: #00bcd4; color: #111; padding: 8px 16px; border-radius: 30px; font-weight: 500;">Navigation</span>
+			  <div class="d-flex flex-wrap justify-content-center" style="gap: 12px;">
+				<style>
+				  .skill-tag {
+					background-color: #00bcd4;
+					color: #111;
+					padding: 10px 18px;
+					border-radius: 30px;
+					font-weight: 500;
+					font-size: 14px;
+					transition: all 0.3s ease;
+					margin: 6px;
+					white-space: nowrap;
+				  }
+	  
+				  .skill-tag:hover {
+					background-color: #00acc1;
+					transform: translateY(-2px);
+					box-shadow: 0 2px 6px rgba(0, 188, 212, 0.3);
+					cursor: default;
+				  }
+	  
+				  @media (max-width: 768px) {
+					.skill-tag {
+					  font-size: 13px;
+					  padding: 8px 14px;
+					}
+				  }
+	  
+				  @media (max-width: 480px) {
+					.skill-tag {
+					  font-size: 12px;
+					  padding: 6px 12px;
+					}
+				  }
+				</style>
+	  
+				<!-- Skill Tags -->
+				<span class="skill-tag">React Native</span>
+				<span class="skill-tag">Redux</span>
+				<span class="skill-tag">Zustand</span>
+				<span class="skill-tag">Firebase</span>
+				<span class="skill-tag">Node.js</span>
+				<span class="skill-tag">React.js</span>
+				<span class="skill-tag">REST API</span>
+				<span class="skill-tag">Git</span>
+				<span class="skill-tag">GitHub</span>
+				<span class="skill-tag">Jest</span>
+				<span class="skill-tag">Detox</span>
+				<span class="skill-tag">Styled Components</span>
+				<span class="skill-tag">Expo</span>
+				<span class="skill-tag">Navigation</span>
 			  </div>
 			</div>
 		  </div>
 		</div>
 	  </section>
+	  
+	  
 	  
 
     <section class="ftco-section ftco-project" id="projects-section">
@@ -291,7 +322,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Projects</h1>
             <h2 class="mb-4">Our Projects</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p>A collection of real-world mobile apps I’ve designed and developed — focused on performance, UX, and cross-platform compatibility.</p>
           </div>
         </div>
     		<div class="row">
@@ -373,7 +404,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="55">0</strong>
+                <strong class="number" data-number="20">0</strong>
                 <span>Complete Projects</span>
               </div>
             </div>
@@ -413,7 +444,7 @@
 
 		<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
 			<div class="container">
-			  <div class="row justify-content-center mb-2 pb-3">
+			  <div class="row justify-content-center mb-2 pb-1">
 				<div class="col-md-7 heading-section text-center ftco-animate">
 				  <h1 class="big big-2">Contact</h1>
 				  <h2 class="mb-1">Contact Me</h2>

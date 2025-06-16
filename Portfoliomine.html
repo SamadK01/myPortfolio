@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samad Khalid - Senior React Native Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0f172a;
+            --accent: #f1f5f9;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .availability-banner {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .availability-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #10b981;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            border-radius: 2px;
+        }
+
+        /* Experience */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .company-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+        }
+
+        .duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .achievements {
+            margin: 1rem 0;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .achievement-item::before {
+            content: '▶';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--accent);
+            color: var(--text);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .project-featured {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--warning);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .certification-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--success);
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-link:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="hero">
+                <h1>Samad Khalid</h1>
+                <p class="subtitle">Senior React Native Developer</p>
+                <p class="description">
+                    Building scalable mobile applications serving 500+ users across iOS and Android platforms. 
+                    4+ years of experience with proven track record of improving app performance by 25% and delivering 
+                    cross-platform solutions from concept to App Store deployment.
+                </p>
+                
+                <div class="contact-info">
+                    <a href="mailto:samadkhalid01@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        samadkhalid01@gmail.com
+                    </a>
+                    <a href="tel:+923402801485" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        +92 340 2801485
+                    </a>
+                    <a href="https://github.com/SamadK01" class="contact-item" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/abdul-samad71" class="contact-item" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                </div>
+                
+                <div class="availability-banner">
+                    <div class="availability-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Available for Remote Work</span>
+                    </div>
+                    <div class="availability-item">
+                        <i class="fas fa-building"></i>
+                        <span>Open to Onsite Opportunities</span>
+                    </div>
+                    <div class="availability-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time & Contract Projects</span>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">App Downloads</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25%</span>
+                        <span class="stat-label">Performance Improvement</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-name">Verge Systems</div>
+                        <div class="job-title">Senior React Native Developer</div>
+                        <div class="duration">Nov 2022 – Present (3+ years)</div>
+                    </div>
+                    <div class="achievements">
+                        <div class="achievement-item">Led development of 3 production mobile applications with 50K+ combined downloads</div>
+                        <div class="achievement-item">Improved app startup performance by 25% through code optimization and bundle size reduction</div>
+                        <div class="achievement-item">Implemented comprehensive state management using Redux Toolkit reducing app crashes by 40%</div>
+                        <div class="achievement-item">Built end-to-end features including authentication, real-time notifications, and payment integration</div>
+                        <div class="achievement-item">Collaborated with cross-functional teams of 5+ members including designers and product managers</div>
+                        <div class="achievement-item">Developed robust mobile architecture using React Native 0.70+ with TypeScript</div>
+                        <div class="achievement-item">Integrated Firebase services including Authentication, Firestore, and Cloud Functions</div>
+                        <div class="achievement-item">Built reusable component library reducing development time by 30%</div>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-name">Amzufia, Dipixels</div>
+                        <div class="job-title">Frontend & WordPress Developer</div>
+                        <div class="duration">Jan 2022 - Oct 2022</div>
+                    </div>
+                    <div class="achievements">
+                        <div class="achievement-item">Built 15+ responsive websites using WordPress, Bootstrap, and jQuery based on Figma designs</div>
+                        <div class="achievement-item">Converted UI mockups into pixel-perfect, cross-browser-compatible websites</div>
+                        <div class="achievement-item">Implemented custom WordPress themes and plugins to meet specific client requirements</div>
+                        <div class="achievement-item">Optimized website performance achieving 90+ Google PageSpeed scores</div>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-name">Dipixels</div>
+                        <div class="job-title">WordPress Developer</div>
+                        <div class="duration">Oct 2021 – Dec 2021</div>
+                    </div>
+                    <div class="achievements">
+                        <div class="achievement-item">Developed and deployed 8+ custom WordPress websites with focus on mobile responsiveness</div>
+                        <div class="achievement-item">Translated design files (Figma, Adobe XD) into functional WordPress themes</div>
+                        <div class="achievement-item">Extended theme functionality with custom plugins and optimized for SEO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Expo</span>
+                        <span class="skill-tag">Redux Toolkit</span>
+                        <span class="skill-tag">Zustand</span>
+                        <span class="skill-tag">React Navigation</span>
+                        <span class="skill-tag">Native Modules</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Frontend Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend & Database</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Firestore</span>
+                        <span class="skill-tag">Authentication</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> State Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Redux Toolkit</span>
+                        <span class="skill-tag">Zustand</span>
+                        <span class="skill-tag">Context API</span>
+                        <span class="skill-tag">React Query</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-bug"></i> Testing & Quality</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Jest</span>
+                        <span class="skill-tag">React Native Testing Library</span>
+                        <span class="skill-tag">Detox</span>
+                        <span class="skill-tag">Unit Testing</span>
+                        <span class="skill-tag">Integration Testing</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Xcode</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-featured">⭐ LIVE</div>
+                        <h3 class="project-title">Hireside Job Search App</h3>
+                        <p>Cross-platform job portal with 25K+ downloads and 4.2★ average rating</p>
+                    </div>
+                    <div class="project-content">
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Redux Toolkit</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">React Navigation</span>
+                        </div>
+                        <ul style="margin: 1rem 0; padding-left: 1rem;">
+                            <li>Built advanced job filtering system with real-time search and location-based results</li>
+                            <li>Implemented secure user authentication, profile management, and job application tracking</li>
+                            <li>Integrated push notifications for job alerts and application updates</li>
+                            <li>Optimized app performance achieving 25% faster startup time and 30% smaller bundle size</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-google-play"></i>
+                                Play Store
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-app-store"></i>
+                                App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-featured">⭐ LIVE</div>
+                        <h3 class="project-title">Hireside Recruiter App</h3>
+                        <p>Employer-focused mobile application for job posting and candidate management</p>
+                    </div>
+                    <div class="project-content">
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Deep Linking</span>
+                            <span class="tech-tag">Push Notifications</span>
+                        </div>
+                        <ul style="margin: 1rem 0; padding-left: 1rem;">
+                            <li>Built comprehensive recruiter dashboard with candidate filtering and communication tools</li>
+                            <li>Implemented deep linking for seamless navigation from email/web to mobile app</li>
+                            <li>Developed real-time chat system between recruiters and candidates</li>
+                            <li>Achieved 40% reduction in load times through API optimization and caching strategies</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-google-play"></i>
+                                Play Store
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-app-store"></i>
+                                App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Safco Microfinance App</h3>
+                        <p>Private Enterprise App for loan management system</p>
+                    </div>
+                    <div class="project-content">
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Secure Authentication</span>
+                            <span class="tech-tag">Financial APIs</span>
+                        </div>
+                        <ul style="margin: 1rem 0; padding-left: 1rem;">
+                            <li>Designed and developed loan management system for microfinance operations</li>
+                            <li>Built secure authentication system with biometric login and PIN protection</li>
+                            <li>Implemented loan calculation algorithms and repayment tracking features</li>
+                            <li>Handled iterative development based on real user feedback and compliance requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-light);">
+                    Ready to bring your mobile app ideas to life? I'm available for both remote and onsite opportunities. 
+                    Let's discuss how we can create something amazing together!
+                </p>
+                
+                <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                        <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3>Email Me</h3>
+                        <p style="margin: 0.5rem 0;">Get in touch via email</p>
+                        <a href="mailto:samadkhalid01@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">samadkhalid01@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                        <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3>Call Me</h3>
+                        <p style="margin: 0.5rem 0;">Let's talk about your project</p>
+                        <a href="tel:+923402801485" style="color: var(--primary); text-decoration: none; font-weight: 600;">+92 340 2801485</a>
+                    </div>
+                    
+                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <h3>Location</h3>
+                        <p style="margin: 0.5rem 0;">Based in Pakistan</p>
+                        <span style="color: var(--text-light);">Jamshoro, Sindh, PK</span>
+                    </div>
+                </div>
+                
+                <div class="work-availability" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">🚀 Available for New Projects</h3>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-globe"></i>
+                            <span>Remote Work</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-building"></i>
+                            <span>Onsite Opportunities</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-clock"></i>
+                            <span>Full-time & Contract</span>
+                        </div>
+                    </div>
+                    <p style="opacity: 0.9;">Ready to start immediately • Flexible with time zones • Competitive rates</p>
+                </div>
+                
+                <div class="cta-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="mailto:samadkhalid01@gmail.com?subject=Project%20Inquiry&body=Hi%20Samad,%20I'm%20interested%20in%20discussing%20a%20React%20Native%20project%20with%20you." 
+                       style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-paper-plane"></i>
+                        Start a Project
+                    </a>
+                    <a href="https://linkedin.com/in/abdul-samad71" target="_blank" rel="noopener noreferrer"
+                       style="background: transparent; color: var(--primary); padding: 1rem 2rem; border: 2px solid var(--primary); border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fab fa-linkedin"></i>
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-hackerrank"></i>
+                    </div>
+                    <h3>HackerRank React (Intermediate)</h3>
+                    <p>Problem Solving & Algorithm Skills</p>
+                </div>
+
+                <div class="certification-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-meta"></i>
+                    </div>
+                    <h3>Meta React Native Fundamentals</h3>
+                    <p>Coursera Free Course Completed</p>

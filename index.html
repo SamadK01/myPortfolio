@@ -22,6 +22,9 @@
             --border: #e2e8f0;
             --success: #10b981;
             --warning: #f59e0b;
+            --section-bg: #f4f7fb;
+            --testimonial-bg: #eef2ff;
+            --divider: #e0e7ef;
         }
 
         body {
@@ -159,28 +162,41 @@
 
         .stat-item {
             text-align: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 18px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 24px rgba(99,102,241,0.08);
+            border: 1.5px solid var(--border);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .stat-item:hover {
+            box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+            transform: translateY(-4px) scale(1.03);
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             display: block;
+            transition: color 0.3s;
+            color: var(--primary) !important;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1.05rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-top: 0.3rem;
+            letter-spacing: 0.01em;
         }
 
         /* Navigation */
         nav {
             background: white;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 18px rgba(99,102,241,0.08);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -195,29 +211,46 @@
         .nav-link {
             color: var(--text);
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
             border-radius: 25px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+            font-size: 1.08rem;
         }
 
         .nav-link:hover, .nav-link.active {
             background: var(--primary);
             color: white;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.12);
         }
 
         /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 4.5rem 0 4.5rem 0;
+            position: relative;
+        }
+
+        section:not(:first-of-type)::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 2px;
+            background: var(--divider);
+            border-radius: 1px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
             color: var(--secondary);
             position: relative;
+            letter-spacing: 0.01em;
         }
 
         .section-title::after {
@@ -354,22 +387,22 @@
 
         .project-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 24px rgba(99,102,241,0.08);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(99,102,241,0.18);
         }
 
         .project-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 1.5rem;
+            padding: 1.7rem 1.5rem 1.2rem 1.5rem;
             position: relative;
         }
 
@@ -379,10 +412,12 @@
             right: 10px;
             background: var(--warning);
             color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(245,158,11,0.15);
+            letter-spacing: 0.02em;
         }
 
         .project-title {
@@ -422,16 +457,19 @@
             gap: 0.5rem;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
             border: 2px solid var(--primary);
             border-radius: 25px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.06);
         }
 
         .project-link:hover {
             background: var(--primary);
             color: white;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.13);
         }
 
         /* Certifications */
@@ -439,20 +477,24 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
+            background: var(--testimonial-bg);
+            border-radius: 18px;
+            padding: 2rem 1rem;
         }
 
         .certification-card {
             background: white;
             padding: 1.5rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(99,102,241,0.08);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s, transform 0.3s;
             border-top: 4px solid var(--success);
         }
 
         .certification-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 32px rgba(99,102,241,0.13);
         }
 
         .cert-icon {
@@ -554,6 +596,16 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        section:nth-of-type(even) {
+            background: var(--section-bg);
+        }
+        .stat-number {
+            transition: color 0.3s;
+        }
+        .stat-number.animated {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -561,6 +613,7 @@
     <header>
         <div class="container">
             <div class="hero">
+                <img src="https://avatars.githubusercontent.com/u/99199932?v=4" alt="Samad Khalid" style="width:120px;height:120px;border-radius:50%;border:4px solid #fff;box-shadow:0 4px 20px rgba(0,0,0,0.1);margin-bottom:1rem;">
                 <h1>Samad Khalid</h1>
                 <p class="subtitle">Senior React Native Developer</p>
                 <p class="description">
@@ -568,6 +621,7 @@
                     4+ years of experience with proven track record of improving app performance by 25% and delivering 
                     cross-platform solutions from concept to App Store deployment.
                 </p>
+                <a href="Samad_Cv.html" download style="background:var(--success);color:white;padding:0.8rem 2rem;border-radius:30px;text-decoration:none;font-weight:600;display:inline-block;margin-bottom:2rem;transition:all 0.3s ease;"><i class="fas fa-download"></i> Download Resume</a>
                 
                 <div class="contact-info">
                     <a href="mailto:samadkhalid01@gmail.com" class="contact-item">
@@ -889,7 +943,7 @@
                         <a href="tel:+923402801485" style="color: var(--primary); text-decoration: none; font-weight: 600;">+92 340 2801485</a>
                     </div>
                     
-<!--                     <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                    <!-- <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
                         <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
                         <h3>Location</h3>
                         <p style="margin: 0.5rem 0;">Based in Pakistan</p>
@@ -918,12 +972,12 @@
                 
                 <div class="cta-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                     <a href="mailto:samadkhalid01@gmail.com?subject=Project%20Inquiry&body=Hi%20Samad,%20I'm%20interested%20in%20discussing%20a%20React%20Native%20project%20with%20you." 
-                       style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                       style="background: var(--primary); color: white; padding: 1.1rem 2.3rem; border-radius: 35px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 18px rgba(99,102,241,0.10); transition: all 0.3s cubic-bezier(.4,0,.2,1); display: inline-flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-paper-plane"></i>
                         Start a Project
                     </a>
                     <a href="https://linkedin.com/in/abdul-samad71" target="_blank" rel="noopener noreferrer"
-                       style="background: transparent; color: var(--primary); padding: 1rem 2rem; border: 2px solid var(--primary); border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                       style="background: transparent; color: var(--primary); padding: 1.1rem 2.3rem; border: 2px solid var(--primary); border-radius: 35px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 18px rgba(99,102,241,0.10); transition: all 0.3s cubic-bezier(.4,0,.2,1); display: inline-flex; align-items: center; gap: 0.5rem;">
                         <i class="fab fa-linkedin"></i>
                         Connect on LinkedIn
                     </a>
@@ -949,3 +1003,44 @@
                     </div>
                     <h3>Meta React Native Fundamentals</h3>
                     <p>Coursera Free Course Completed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonials</h2>
+            <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Samad is a highly skilled developer who delivers on time and exceeds expectations."</div>
+                    <div class="testimonial-author">— Verge Systems</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Great communication and technical expertise. Highly recommended!"</div>
+                    <div class="testimonial-author">— Basit Memon</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+document.querySelectorAll('.stat-number').forEach(function(el) {
+    let end = parseInt(el.textContent.replace(/\D/g, '')) || 0;
+    let isPercent = el.textContent.includes('%');
+    let i = 0;
+    let step = Math.ceil(end / 50);
+    function count() {
+        if (i < end) {
+            i += step;
+            el.textContent = isPercent ? i + '%' : i + '+';
+            el.classList.add('animated');
+            setTimeout(count, 20);
+        } else {
+            el.textContent = el.textContent; // keep original
+        }
+    }
+    count();
+});
+</script>
+</html>

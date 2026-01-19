@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,22 +14,44 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #0f172a;
-            --accent: #f1f5f9;
-            --text: #334155;
-            --text-light: #64748b;
-            --border: #e2e8f0;
+            --bg-primary: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            --bg-secondary: rgba(255, 255, 255, 0.05);
+            --bg-accent: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-solid: #667eea;
+            --accent-dark: #5a67d8;
+            --border: rgba(255, 255, 255, 0.1);
             --success: #10b981;
             --warning: #f59e0b;
+            --glow: rgba(102, 126, 234, 0.5);
+        }
+
+        :root.light-mode {
+            --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --bg-secondary: rgba(0, 0, 0, 0.05);
+            --bg-accent: rgba(0, 0, 0, 0.08);
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-solid: #667eea;
+            --accent-dark: #5a67d8;
+            --border: rgba(0, 0, 0, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --glow: rgba(102, 126, 234, 0.5);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background: #ffffff;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
         .container {
@@ -39,9 +62,11 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            padding: 6rem 0 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -53,8 +78,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            z-index: -1;
         }
 
         .hero {
@@ -63,20 +88,44 @@
             text-align: center;
         }
 
+        .theme-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-accent);
+        }
+
+        .theme-toggle i {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            background: var(--accent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: fadeInUp 1s ease;
+            text-shadow: 0 0 30px var(--glow);
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            opacity: 0.9;
+            color: var(--text-secondary);
             animation: fadeInUp 1s ease 0.2s both;
         }
 
@@ -84,7 +133,7 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto 2rem;
-            opacity: 0.8;
+            color: var(--text-muted);
             animation: fadeInUp 1s ease 0.4s both;
         }
 
@@ -139,12 +188,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1); 
+
+            0%,
+            100% {
+                transform: scale(1);
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
             }
-            50% { 
-                transform: scale(1.05); 
+
+            50% {
+                transform: scale(1.05);
                 box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
             }
         }
@@ -159,31 +211,40 @@
 
         .stat-item {
             text-align: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            background: var(--bg-accent);
             border-radius: 15px;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             display: block;
+            color: var(--accent);
         }
 
         .stat-label {
             font-size: 0.9rem;
-            opacity: 0.8;
+            color: var(--text-secondary);
         }
 
         /* Navigation */
         nav {
-            background: white;
+            background: var(--bg-secondary);
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
@@ -193,7 +254,7 @@
         }
 
         .nav-link {
-            color: var(--text);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
@@ -201,22 +262,42 @@
             transition: all 0.3s ease;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background: var(--primary);
-            color: white;
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
         /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: transparent;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem;
+            z-index: -1;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             margin-bottom: 3rem;
-            color: var(--secondary);
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             position: relative;
         }
 
@@ -228,7 +309,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(45deg, var(--accent), var(--accent-dark));
             border-radius: 2px;
         }
 
@@ -239,17 +320,18 @@
         }
 
         .experience-card {
-            background: white;
+            background: var(--bg-secondary);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid var(--accent);
             transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .experience-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.2);
         }
 
         .experience-header {
@@ -259,18 +341,18 @@
         .company-name {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .job-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--secondary);
+            color: var(--text-primary);
             margin: 0.5rem 0;
         }
 
         .duration {
-            color: var(--text-light);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
@@ -303,19 +385,21 @@
         }
 
         .skill-category {
-            background: white;
+            background: var(--bg-secondary);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .skill-category:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.2);
         }
 
         .skill-category h3 {
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 1rem;
             font-size: 1.2rem;
             display: flex;
@@ -323,15 +407,50 @@
             gap: 0.5rem;
         }
 
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .skill-bar {
+            background: var(--bg-accent);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 0;
+            animation: fillBar 2s ease forwards;
+        }
+
+        @keyframes fillBar {
+            to {
+                width: var(--progress);
+            }
+        }
+
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-top: 1rem;
         }
 
         .skill-tag {
-            background: var(--accent);
-            color: var(--text);
+            background: var(--bg-accent);
+            color: var(--text-secondary);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -340,8 +459,8 @@
         }
 
         .skill-tag:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--accent);
+            color: var(--bg-primary);
             transform: translateY(-2px);
         }
 
@@ -353,22 +472,23 @@
         }
 
         .project-card {
-            background: white;
+            background: var(--bg-secondary);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             position: relative;
+            border: 1px solid var(--border);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 212, 170, 0.3);
         }
 
         .project-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--bg-primary);
             padding: 1.5rem;
             position: relative;
         }
@@ -378,7 +498,7 @@
             top: 10px;
             right: 10px;
             background: var(--warning);
-            color: white;
+            color: var(--bg-primary);
             padding: 0.2rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -403,11 +523,12 @@
         }
 
         .tech-tag {
-            background: var(--primary);
-            color: white;
+            background: var(--bg-accent);
+            color: var(--text-secondary);
             padding: 0.2rem 0.6rem;
             border-radius: 12px;
             font-size: 0.8rem;
+            border: 1px solid var(--border);
         }
 
         .project-links {
@@ -420,18 +541,18 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--primary);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--accent);
             border-radius: 25px;
             transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
         /* Certifications */
@@ -442,17 +563,19 @@
         }
 
         .certification-card {
-            background: white;
+            background: var(--bg-secondary);
             padding: 1.5rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
             transition: all 0.3s ease;
             border-top: 4px solid var(--success);
+            border: 1px solid var(--border);
         }
 
         .certification-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.2);
         }
 
         .cert-icon {
@@ -463,10 +586,11 @@
 
         /* Footer */
         footer {
-            background: var(--secondary);
-            color: white;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             padding: 3rem 0 1rem;
             text-align: center;
+            border-top: 1px solid var(--border);
         }
 
         .footer-content {
@@ -481,17 +605,18 @@
         }
 
         .footer-link {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 25px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
         }
 
         .footer-link:hover {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
         }
 
         /* Animations */
@@ -500,14 +625,42 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+            }
+        }
+
         .fade-in {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .glow-animation {
+            animation: glow 2s ease-in-out infinite;
         }
 
         /* Responsive */
@@ -554,50 +707,195 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .hamburger span {
+            height: 4px;
+            width: 28px;
+            background: var(--primary);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 150;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                gap: 1rem;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .certifications-grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+
+            .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Enhanced hover for cards and buttons */
+        .project-card:hover,
+        .skill-category:hover,
+        .certification-card:hover,
+        .contact-card:hover {
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15), 0 1.5px 6px rgba(0, 0, 0, 0.08);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .project-link,
+        .footer-link,
+        .cta-buttons a {
+            transition: all 0.2s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .project-link:hover,
+        .footer-link:hover,
+        .cta-buttons a:hover {
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
+            transform: translateY(-2px) scale(1.04);
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
         <div class="container">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="hero">
                 <h1>Samad Khalid</h1>
-                <p class="subtitle">Senior React Native Developer</p>
+                <p class="subtitle"> React Native Developer</p>
                 <p class="description">
-                    Building scalable mobile applications serving 500+ users across iOS and Android platforms. 
-                    4+ years of experience with proven track record of improving app performance by 25% and delivering 
+                    Building scalable mobile applications serving 500+ users across iOS and Android platforms.
+                    4+ years of experience with proven track record of improving app performance by 25% and delivering
                     cross-platform solutions from concept to App Store deployment.
                 </p>
-                
+
                 <div class="contact-info">
-                    <a href="mailto:samadkhalid01@gmail.com" class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:samadkhalid01@gmail.com" class="contact-item" style="background: rgba(0, 212, 170, 0.1); border: 1px solid var(--accent);">
+                        <i class="fas fa-envelope" style="color: var(--accent);"></i>
                         samadkhalid01@gmail.com
                     </a>
-                    <a href="tel:+923402801485" class="contact-item">
-                        <i class="fas fa-phone"></i>
+                    <a href="tel:+923402801485" class="contact-item" style="background: rgba(0, 212, 170, 0.1); border: 1px solid var(--accent);">
+                        <i class="fas fa-phone" style="color: var(--accent);"></i>
                         +92 340 2801485
                     </a>
-                    <a href="https://github.com/SamadK01" class="contact-item" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/SamadK01" class="contact-item" target="_blank"
+                        rel="noopener noreferrer" style="background: rgba(0, 212, 170, 0.1); border: 1px solid var(--accent);">
+                        <i class="fab fa-github" style="color: var(--accent);"></i>
                         GitHub
                     </a>
-                    <a href="https://linkedin.com/in/abdul-samad71" class="contact-item" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/abdul-samad71" class="contact-item" target="_blank"
+                        rel="noopener noreferrer" style="background: rgba(0, 212, 170, 0.1); border: 1px solid var(--accent);">
+                        <i class="fab fa-linkedin" style="color: var(--accent);"></i>
                         LinkedIn
                     </a>
                 </div>
-                
+
+                <div style="text-align: center; margin: 2rem 0; animation: fadeInUp 1s ease 0.7s both;">
+                    <a href="Samad__CV.pdf" download class="contact-item"
+                        style="background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--bg-primary); font-weight: 600; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3); transition: all 0.3s ease;">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                </div>
+
                 <div class="availability-banner">
-                    <div class="availability-item">
+                    <div class="availability-item" style="background: rgba(0, 212, 170, 0.1); border-color: var(--accent); color: var(--accent);">
                         <i class="fas fa-globe"></i>
                         <span>Available for Remote Work</span>
                     </div>
-                    <div class="availability-item">
+                    <div class="availability-item" style="background: rgba(0, 212, 170, 0.1); border-color: var(--accent); color: var(--accent);">
                         <i class="fas fa-building"></i>
                         <span>Open to Onsite Opportunities</span>
                     </div>
-                    <div class="availability-item">
+                    <div class="availability-item" style="background: rgba(0, 212, 170, 0.1); border-color: var(--accent); color: var(--accent);">
                         <i class="fas fa-clock"></i>
                         <span>Full-time & Contract Projects</span>
                     </div>
@@ -625,9 +923,29 @@
         </div>
     </header>
 
+    <!-- About Me Section -->
+    <section id="about" style="background: var(--bg-accent); padding: 3rem 0;">
+        <div class="container"
+            style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; justify-content: center;">
+            <div style="flex: 0 0 180px; display: flex; justify-content: center; align-items: center;">
+                <img src="data:image/jpeg;base64,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"
+                    alt="Samad Khalid Profile"
+                    style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 5px solid var(--primary); box-shadow: 0 4px 16px rgba(99,102,241,0.08); background: #fff;" />
+            </div>
+            <div style="flex: 1 1 320px; min-width: 250px;">
+                <h2 style="color: var(--accent); font-size: 2rem; margin-bottom: 1rem;">About Me</h2>
+                <p style="font-size: 1.1rem; color: var(--text); line-height: 1.7;">
+                    Hi! I'm <b>Samad Khalid</b>, a passionate Senior React Native Developer with 4+ years of experience
+                    building scalable, high-performance mobile apps. I love turning ideas into beautiful, functional
+                    products and thrive in collaborative, fast-paced teams. Let's build something amazing together!
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Navigation -->
     <nav>
-        <div class="container">
+        <div class="container" style="position:relative;">
             <div class="nav-container">
                 <a href="#experience" class="nav-link">Experience</a>
                 <a href="#skills" class="nav-link">Skills</a>
@@ -635,6 +953,18 @@
                 <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <div class="hamburger" id="hamburger-menu" aria-label="Open navigation" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 
@@ -650,14 +980,22 @@
                         <div class="duration">Nov 2022 – Present (3+ years)</div>
                     </div>
                     <div class="achievements">
-                        <div class="achievement-item">Led development of 3 production mobile applications with 50K+ combined downloads</div>
-                        <div class="achievement-item">Improved app startup performance by 25% through code optimization and bundle size reduction</div>
-                        <div class="achievement-item">Implemented comprehensive state management using Redux Toolkit reducing app crashes by 40%</div>
-                        <div class="achievement-item">Built end-to-end features including authentication, real-time notifications, and payment integration</div>
-                        <div class="achievement-item">Collaborated with cross-functional teams of 5+ members including designers and product managers</div>
-                        <div class="achievement-item">Developed robust mobile architecture using React Native 0.70+ with TypeScript</div>
-                        <div class="achievement-item">Integrated Firebase services including Authentication, Firestore, and Cloud Functions</div>
-                        <div class="achievement-item">Built reusable component library reducing development time by 30%</div>
+                        <div class="achievement-item">Led development of 3 production mobile applications with 50K+
+                            combined downloads</div>
+                        <div class="achievement-item">Improved app startup performance by 25% through code optimization
+                            and bundle size reduction</div>
+                        <div class="achievement-item">Implemented comprehensive state management using Redux Toolkit
+                            reducing app crashes by 40%</div>
+                        <div class="achievement-item">Built end-to-end features including authentication, real-time
+                            notifications, and payment integration</div>
+                        <div class="achievement-item">Collaborated with cross-functional teams of 5+ members including
+                            designers and product managers</div>
+                        <div class="achievement-item">Developed robust mobile architecture using React Native 0.70+ with
+                            TypeScript</div>
+                        <div class="achievement-item">Integrated Firebase services including Authentication, Firestore,
+                            and Cloud Functions</div>
+                        <div class="achievement-item">Built reusable component library reducing development time by 30%
+                        </div>
                     </div>
                 </div>
 
@@ -668,10 +1006,14 @@
                         <div class="duration">Jan 2022 - Oct 2022</div>
                     </div>
                     <div class="achievements">
-                        <div class="achievement-item">Built 15+ responsive websites using WordPress, Bootstrap, and jQuery based on Figma designs</div>
-                        <div class="achievement-item">Converted UI mockups into pixel-perfect, cross-browser-compatible websites</div>
-                        <div class="achievement-item">Implemented custom WordPress themes and plugins to meet specific client requirements</div>
-                        <div class="achievement-item">Optimized website performance achieving 90+ Google PageSpeed scores</div>
+                        <div class="achievement-item">Built 15+ responsive websites using WordPress, Bootstrap, and
+                            jQuery based on Figma designs</div>
+                        <div class="achievement-item">Converted UI mockups into pixel-perfect, cross-browser-compatible
+                            websites</div>
+                        <div class="achievement-item">Implemented custom WordPress themes and plugins to meet specific
+                            client requirements</div>
+                        <div class="achievement-item">Optimized website performance achieving 90+ Google PageSpeed
+                            scores</div>
                     </div>
                 </div>
 
@@ -682,9 +1024,12 @@
                         <div class="duration">Oct 2021 – Dec 2021</div>
                     </div>
                     <div class="achievements">
-                        <div class="achievement-item">Developed and deployed 8+ custom WordPress websites with focus on mobile responsiveness</div>
-                        <div class="achievement-item">Translated design files (Figma, Adobe XD) into functional WordPress themes</div>
-                        <div class="achievement-item">Extended theme functionality with custom plugins and optimized for SEO</div>
+                        <div class="achievement-item">Developed and deployed 8+ custom WordPress websites with focus on
+                            mobile responsiveness</div>
+                        <div class="achievement-item">Translated design files (Figma, Adobe XD) into functional
+                            WordPress themes</div>
+                        <div class="achievement-item">Extended theme functionality with custom plugins and optimized for
+                            SEO</div>
                     </div>
                 </div>
             </div>
@@ -698,10 +1043,34 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React Native</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Expo</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Redux Toolkit</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 80%;"></div>
+                        </div>
+                    </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">React Native</span>
-                        <span class="skill-tag">Expo</span>
-                        <span class="skill-tag">Redux Toolkit</span>
                         <span class="skill-tag">Zustand</span>
                         <span class="skill-tag">React Navigation</span>
                         <span class="skill-tag">Native Modules</span>
@@ -789,10 +1158,13 @@
                             <span class="tech-tag">React Navigation</span>
                         </div>
                         <ul style="margin: 1rem 0; padding-left: 1rem;">
-                            <li>Built advanced job filtering system with real-time search and location-based results</li>
-                            <li>Implemented secure user authentication, profile management, and job application tracking</li>
+                            <li>Built advanced job filtering system with real-time search and location-based results
+                            </li>
+                            <li>Implemented secure user authentication, profile management, and job application tracking
+                            </li>
                             <li>Integrated push notifications for job alerts and application updates</li>
-                            <li>Optimized app performance achieving 25% faster startup time and 30% smaller bundle size</li>
+                            <li>Optimized app performance achieving 25% faster startup time and 30% smaller bundle size
+                            </li>
                         </ul>
                         <div class="project-links">
                             <a href="#" class="project-link">
@@ -822,10 +1194,12 @@
                             <span class="tech-tag">Push Notifications</span>
                         </div>
                         <ul style="margin: 1rem 0; padding-left: 1rem;">
-                            <li>Built comprehensive recruiter dashboard with candidate filtering and communication tools</li>
+                            <li>Built comprehensive recruiter dashboard with candidate filtering and communication tools
+                            </li>
                             <li>Implemented deep linking for seamless navigation from email/web to mobile app</li>
                             <li>Developed real-time chat system between recruiters and candidates</li>
-                            <li>Achieved 40% reduction in load times through API optimization and caching strategies</li>
+                            <li>Achieved 40% reduction in load times through API optimization and caching strategies
+                            </li>
                         </ul>
                         <div class="project-links">
                             <a href="#" class="project-link">
@@ -856,7 +1230,8 @@
                             <li>Designed and developed loan management system for microfinance operations</li>
                             <li>Built secure authentication system with biometric login and PIN protection</li>
                             <li>Implemented loan calculation algorithms and repayment tracking features</li>
-                            <li>Handled iterative development based on real user feedback and compliance requirements</li>
+                            <li>Handled iterative development based on real user feedback and compliance requirements
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -870,60 +1245,66 @@
             <h2 class="section-title">Let's Work Together</h2>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-light);">
-                    Ready to bring your mobile app ideas to life? I'm available for both remote and onsite opportunities. 
+                    Ready to bring your mobile app ideas to life? I'm available for both remote and onsite
+                    opportunities.
                     Let's discuss how we can create something amazing together!
                 </p>
-                
-                <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
-                        <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>Email Me</h3>
-                        <p style="margin: 0.5rem 0;">Get in touch via email</p>
-                        <a href="mailto:samadkhalid01@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">samadkhalid01@gmail.com</a>
+
+                <div class="contact-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                    <div class="contact-card"
+                        style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; border: 1px solid var(--border);">
+                        <i class="fas fa-envelope"
+                            style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--text-primary);">Email Me</h3>
+                        <p style="margin: 0.5rem 0; color: var(--text-muted);">Get in touch via email</p>
+                        <a href="mailto:samadkhalid01@gmail.com"
+                            style="color: var(--accent); text-decoration: none; font-weight: 600;">samadkhalid01@gmail.com</a>
                     </div>
-                    
-                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
-                        <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>Call Me</h3>
-                        <p style="margin: 0.5rem 0;">Let's talk about your project</p>
-                        <a href="tel:+923402801485" style="color: var(--primary); text-decoration: none; font-weight: 600;">+92 340 2801485</a>
+
+                    <div class="contact-card"
+                        style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; border: 1px solid var(--border);">
+                        <i class="fas fa-phone"
+                            style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--text-primary);">Call Me</h3>
+                        <p style="margin: 0.5rem 0; color: var(--text-muted);">Let's talk about your project</p>
+                        <a href="tel:+923402801485"
+                            style="color: var(--accent); text-decoration: none; font-weight: 600;">+92 340 2801485</a>
                     </div>
-                    
-                    <div class="contact-card" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
-                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                        <h3>Location</h3>
-                        <p style="margin: 0.5rem 0;">Based in Pakistan</p>
-                        <span style="color: var(--text-light);">Jamshoro, Sindh, PK</span>
-                    </div>
+
+
                 </div>
-                
-                <div class="work-availability" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                    <h3 style="margin-bottom: 1rem;">🚀 Available for New Projects</h3>
-                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-globe"></i>
+
+                <div class="work-availability"
+                    style="background: var(--bg-accent); color: var(--text-primary); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent);">🚀 Available for New Projects</h3>
+                    <div
+                        style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-globe" style="color: var(--accent);"></i>
                             <span>Remote Work</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-building"></i>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-building" style="color: var(--accent);"></i>
                             <span>Onsite Opportunities</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-clock"></i>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                            <i class="fas fa-clock" style="color: var(--accent);"></i>
                             <span>Full-time & Contract</span>
                         </div>
                     </div>
-                    <p style="opacity: 0.9;">Ready to start immediately • Flexible with time zones • Competitive rates</p>
+                    <p style="color: var(--text-muted);">Ready to start immediately • Flexible with time zones • Competitive rates
+                    </p>
                 </div>
-                
+
                 <div class="cta-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="mailto:samadkhalid01@gmail.com?subject=Project%20Inquiry&body=Hi%20Samad,%20I'm%20interested%20in%20discussing%20a%20React%20Native%20project%20with%20you." 
-                       style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <a href="mailto:samadkhalid01@gmail.com?subject=Project%20Inquiry&body=Hi%20Samad,%20I'm%20interested%20in%20discussing%20a%20React%20Native%20project%20with%20you."
+                        style="background: var(--accent); color: var(--bg-primary); padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                         <i class="fas fa-paper-plane"></i>
                         Start a Project
                     </a>
                     <a href="https://linkedin.com/in/abdul-samad71" target="_blank" rel="noopener noreferrer"
-                       style="background: transparent; color: var(--primary); padding: 1rem 2rem; border: 2px solid var(--primary); border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        style="background: transparent; color: var(--accent); padding: 1rem 2rem; border: 2px solid var(--accent); border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                         <i class="fab fa-linkedin"></i>
                         Connect on LinkedIn
                     </a>
@@ -949,3 +1330,142 @@
                     </div>
                     <h3>Meta React Native Fundamentals</h3>
                     <p>Coursera Free Course Completed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                mobileNav.classList.toggle('active');
+            }
+        });
+        // Close mobile nav on link click
+        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+        // Smooth scroll for nav links (for browsers that don't support scroll-behavior)
+        document.querySelectorAll('a.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="data:image/jpeg;base64,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"
+                alt="Samad Khalid"
+                style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent); margin-bottom: 1rem; background: #fff; object-fit: cover;" />
+            <h3 style="margin-bottom: 0.5rem;">Samad Khalid</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Senior React Native Developer</p>
+            <div class="footer-links">
+                <a href="mailto:samadkhalid01@gmail.com" class="footer-link"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/SamadK01" class="footer-link" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/abdul-samad71" class="footer-link" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <button id="backToTop"
+                style="background: var(--accent); color: var(--bg-primary); border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 1.3rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 212, 170, 0.3); transition: background 0.2s;">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+        <div style="color: var(--text-secondary); font-size: 0.95rem;">&copy; 2024 Samad Khalid. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            root.classList.add('light-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            root.classList.toggle('light-mode');
+            const isLight = root.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+            if (isLight) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Back to Top button
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('section, .experience-card, .skill-category, .project-card, .certification-card, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add floating animation to stats
+        document.querySelectorAll('.stat-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.2}s`;
+            item.classList.add('float-animation');
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.experience-card, .skill-category, .project-card, .certification-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+                card.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.3)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+
+</html>

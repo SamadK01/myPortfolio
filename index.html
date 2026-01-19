@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samad Khalid | Senior React Native Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Samad<span style="color: var(--primary)">.dev</span></a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="gradient-text">Samad Khalid</h1>
+                <p class="subtitle">React Native Developer</p>
+                <p class="description">
+                    Building scalable mobile applications serving 500+ users across iOS and Android platforms. 
+                    4+ years of experience improving performance and delivering cross-platform solutions.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Let's Talk</a>
+                    <a href="Samad__CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> CV</a>
+                </div>
+                <div class="hero-buttons" style="margin-top: 1rem; font-size: 1.5rem;">
+                    <a href="https://github.com/SamadK01" target="_blank" style="color: var(--text-muted); margin-right: 1rem;"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/abdul-samad71" target="_blank" style="color: var(--text-muted);"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-image-container">
+                    <div class="profile-blob"></div>
+                    <img src="data:image/jpeg;base64,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" alt="Samad Khalid" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">4+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">App Downloads</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">25%</span>
+                <span class="stat-label">Perf. Boost</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Projects</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience" style="padding: 8rem 0;">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-grid">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="company">Verge Systems</div>
+                            <div class="role">Senior React Native Developer</div>
+                        </div>
+                        <div class="date">Nov 2022 – Present</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Led development of 3 production mobile applications with 50K+ combined downloads</li>
+                        <li>Improved app startup performance by 25% through code optimization and bundle size reduction</li>
+                        <li>Implemented comprehensive state management using Redux Toolkit reducing app crashes by 40%</li>
+                        <li>Built end-to-end features including authentication, real-time notifications, and payment integration</li>
+                        <li>Collaborated with cross-functional teams of 5+ members including designers and product managers</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="company">Amzufia, Dipixels</div>
+                            <div class="role">Frontend & WordPress Developer</div>
+                        </div>
+                        <div class="date">Jan 2022 - Oct 2022</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Built 15+ responsive websites using WordPress, Bootstrap, and jQuery based on Figma designs</li>
+                        <li>Converted UI mockups into pixel-perfect, cross-browser-compatible websites</li>
+                        <li>Implemented custom WordPress themes and plugins to meet specific client requirements</li>
+                        <li>Optimized website performance achieving 90+ Google PageSpeed scores</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="company">Dipixels</div>
+                            <div class="role">WordPress Developer</div>
+                        </div>
+                        <div class="date">Oct 2021 – Dec 2021</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Developed and deployed 8+ custom WordPress websites with focus on mobile responsiveness</li>
+                        <li>Translated design files (Figma, Adobe XD) into functional WordPress themes</li>
+                        <li>Extended theme functionality with custom plugins and optimized for SEO</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                
+                <div class="card skill-category">
+                    <h3><i class="fas fa-mobile-alt" style="color: var(--secondary)"></i> Mobile Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Expo</span>
+                        <span class="skill-tag">Redux Toolkit</span>
+                        <span class="skill-tag">Zustand</span>
+                        <span class="skill-tag">React Navigation</span>
+                        <span class="skill-tag">Native Modules</span>
+                    </div>
+                </div>
+
+                <div class="card skill-category">
+                    <h3><i class="fas fa-code" style="color: var(--secondary)"></i> Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="card skill-category">
+                    <h3><i class="fas fa-server" style="color: var(--secondary)"></i> Backend & DB</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Firestore</span>
+                        <span class="skill-tag">Authentication</span>
+                    </div>
+                </div>
+
+                <div class="card skill-category">
+                    <h3><i class="fas fa-tools" style="color: var(--secondary)"></i> Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Xcode</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="padding: 8rem 0;">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="featured-badge">LIVE</span>
+                        <h3>Hireside Job Search App</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">25K+ Downloads • 4.2★ Rating</p>
+                    </div>
+                    <div class="project-content">
+                        <ul class="achievement-list">
+                            <li>Built advanced job filtering system with real-time search and location-based results</li>
+                            <li>Implemented secure user authentication and job application tracking</li>
+                            <li>Integrated push notifications for job alerts</li>
+                            <li>Optimized startup time by 25% and reduced bundle size by 30%</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-pill">React Native</span>
+                            <span class="tech-pill">Redux</span>
+                            <span class="tech-pill">Firebase</span>
+                            <span class="tech-pill">TypeScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;"><i class="fab fa-google-play"></i> Play Store</a>
+                            <a href="#" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;"><i class="fab fa-app-store"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="featured-badge">LIVE</span>
+                        <h3>Hireside Recruiter App</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Employer Portal & Candidate Mgmt</p>
+                    </div>
+                    <div class="project-content">
+                        <ul class="achievement-list">
+                            <li>Built comprehensive recruiter dashboard with filtering tools</li>
+                            <li>Implemented deep linking for seamless email-to-app navigation</li>
+                            <li>Developed real-time chat system between recruiters and candidates</li>
+                            <li>Achieved 40% load time reduction via API optimization</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-pill">React Native</span>
+                            <span class="tech-pill">Deep Linking</span>
+                            <span class="tech-pill">Push Notifications</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;"><i class="fab fa-google-play"></i> Play Store</a>
+                            <a href="#" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem;"><i class="fab fa-app-store"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Safco Microfinance App</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Enterprise Loan Mgmt System</p>
+                    </div>
+                    <div class="project-content">
+                        <ul class="achievement-list">
+                            <li>Designed and developed loan management system for microfinance</li>
+                            <li>Built secure authentication with biometric login</li>
+                            <li>Implemented loan calculation algorithms and repayment tracking</li>
+                            <li>Iterative development based on user feedback</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-pill">React Native</span>
+                            <span class="tech-pill">Biometrics</span>
+                            <span class="tech-pill">FinTech APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" style="padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="skills-grid">
+                <div class="card" style="text-align: center;">
+                    <i class="fab fa-hackerrank" style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+                    <h3>HackerRank React (Intermediate)</h3>
+                    <p style="color: var(--text-muted)">Problem Solving & Algorithms</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <i class="fab fa-meta" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3>Meta React Native Fundamentals</h3>
+                    <p style="color: var(--text-muted)">Coursera Course</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 8rem 0 4rem;">
+        <div class="contact-section">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-muted);">
+                Ready to bring your mobile app ideas to life? I'm available for remote and onsite opportunities.
+            </p>
+
+            <div class="contact-cards">
+                <a href="mailto:samadkhalid01@gmail.com" class="contact-card" style="text-decoration: none;">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3 style="color: var(--text-main)">Email Me</h3>
+                    <p style="color: var(--primary)">samadkhalid01@gmail.com</p>
+                </a>
+                <a href="tel:+923402801485" class="contact-card" style="text-decoration: none;">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3 style="color: var(--text-main)">Call Me</h3>
+                    <p style="color: var(--primary)">+92 340 2801485</p>
+                </a>
+            </div>
+
+            <div class="hero-buttons" style="justify-content: center; margin-bottom: 3rem;">
+                <a href="mailto:samadkhalid01@gmail.com" class="btn btn-primary">Start a Project</a>
+                <a href="https://linkedin.com/in/abdul-samad71" target="_blank" class="btn btn-outline">LinkedIn</a>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px; display: inline-block;">
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; color: var(--secondary); font-weight: 600;">
+                    <span><i class="fas fa-globe"></i> Remote Work</span>
+                    <span><i class="fas fa-building"></i> Onsite</span>
+                    <span><i class="fas fa-clock"></i> Full-time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                <a href="https://github.com/SamadK01" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/abdul-samad71" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:samadkhalid01@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="color: var(--text-muted);">&copy; 2024 Samad Khalid. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

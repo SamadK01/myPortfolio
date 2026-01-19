@@ -1,0 +1,21 @@
+# Portfolio Enhancement Tasks
+
+- [x] Switch to a more vibrant and modern color scheme with gradients
+- [x] Add glassmorphism effects for a contemporary look
+- [x] Implement advanced animations and micro-interactions
+- [x] Add modern UI elements like floating cards and layered designs
+- [x] Enhance visual hierarchy with better spacing and typography
+- [ ] Add subtle background patterns or effects
+- [ ] Update experience section with timeline design
+- [ ] Make skills section more interactive with progress bars
+- [ ] Add hover effects and transitions for engagement
+- [x] Ensure the design feels fresh and exciting
+- [x] Test the modern UI in browser
+- [x] Add dark/light mode toggle
+- [ ] Implement contact form with validation
+- [ ] Add testimonials section
+- [ ] Create blog/news section
+- [ ] Add particle background animation
+- [x] Implement skill progress bars
+- [ ] Add experience timeline
+- [ ] Include project filters/categories
